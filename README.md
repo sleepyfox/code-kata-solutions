@@ -1,2 +1,5 @@
 # code-kata-solutions
-A repository of community solutions to Code Dojo katas
+A repository of community solutions to Code Dojo katas. Please feel free to submit a PR with your own solutions.
+
+## Katas
+* [Song refactoring kata](song-refactoring)
