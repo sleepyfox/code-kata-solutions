@@ -48,7 +48,7 @@ There was an old lady who swallowed a horse...
   context 'given first animal is ant' do
     let(:animal) { { indefinite_determiner: 'an', name: 'ant' } }
     it 'the old lady should swallow a ant' do
-      is_expected.to include('There was an old lady who swallowed a ant.')
+      is_expected.to include('There was an old lady who swallowed an ant.')
       is_expected.to_not include('There was an old lady who swallowed a fly.')
 
       is_expected.to include('She swallowed the spider to catch the ant;')

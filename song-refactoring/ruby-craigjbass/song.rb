@@ -5,7 +5,7 @@ class Song
 
   def sing
     <<-HEREDOC
-There was an old lady who swallowed a #{first_animal}.
+There was an old lady who swallowed #{first_animal_indefinite_determiner} #{first_animal}.
 I don't know why she swallowed #{first_animal_indefinite_determiner} #{first_animal} - perhaps she'll die!
 There was an old lady who swallowed a spider;
 That wriggled and wiggled and tickled inside her.
