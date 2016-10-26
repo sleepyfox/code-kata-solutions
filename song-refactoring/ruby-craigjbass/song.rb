@@ -28,61 +28,46 @@ class Song
     end
 
     if @animals.length > 1
-      verse = ''
-      verse << "#{verse_part(1)};"
       song << <<-HEREDOC
 #{verse_start(1)};
 #{remark(1)}.
-#{verse}
+#{verse_lines(1)}
 #{verse_end}
       HEREDOC
     end
 
     if @animals.length > 2
-      verse = verse_lines(2)
-     song << <<-HEREDOC
+      song << <<-HEREDOC
 #{verse_start(2)};
 #{remark(2)}.
-#{verse}
+#{verse_lines(2)}
 #{verse_end}
       HEREDOC
     end
 
     if @animals.length > 3
-      verse = verse_lines(3)
       song << <<-HEREDOC
 #{verse_start(3)};
 #{remark(3)}!
-#{verse}
+#{verse_lines(3)}
 #{verse_end}
       HEREDOC
     end
 
     if @animals.length > 4
-      verse = ''
-      verse << "#{verse_part(4)},\n"
-      verse << "#{verse_part(3)},\n"
-      verse << "#{verse_part(2)},\n"
-      verse << "#{verse_part(1)};"
       song << <<-HEREDOC
 #{verse_start(4)};
 #{remark(4)}!
-#{verse}
+#{verse_lines(4)}
 #{verse_end}
       HEREDOC
     end
 
     if @animals.length > 5
-      verse = ''
-      verse << "#{verse_part(5)},\n"
-      verse << "#{verse_part(4)},\n"
-      verse << "#{verse_part(3)},\n"
-      verse << "#{verse_part(2)},\n"
-      verse << "#{verse_part(1)};"
       song << <<-HEREDOC
 #{verse_start(5)};
 #{remark(5)}!
-#{verse}
+#{verse_lines(5)}
 #{verse_end}
       HEREDOC
     end
