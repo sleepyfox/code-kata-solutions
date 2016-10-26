@@ -57,19 +57,25 @@ There was an old lady who swallowed a horse...
       is_expected.to include("I don't know why she swallowed an ant - perhaps she'll die!")
       is_expected.to_not include("I don't know why she swallowed a fly - perhaps she'll die!")
     end
+
+    it 'uses the correct indefinite determiner' do
+      is_expected.not_to include('a ant')
+    end
+
     context 'given second animal is an aphid' do
       let(:second_animal) { { indefinite_determiner: 'an', name: 'aphid' } }
       it 'sings about the old lady swallowing an ant' do
         is_expected.to include('There was an old lady who swallowed an aphid;')
         is_expected.not_to include('There was an old lady who swallowed a spider;')
 
-
         is_expected.to include('She swallowed the aphid to catch')
         is_expected.not_to include('She swallowed the spider to catch')
 
         is_expected.to include('to catch the aphid')
         is_expected.not_to include('to catch the spider')
+      end
 
+      it 'uses the correct indefinite determiner' do
         is_expected.not_to include('a aphid')
       end
     end
