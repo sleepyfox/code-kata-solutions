@@ -44,12 +44,8 @@ There was an old lady who swallowed a horse...
     end
   end
   context 'given first animal is an ant' do
-    let(:song) do
-      song = []
-      song << first_animal if defined? first_animal
-      song << second_animal if defined? second_animal
-      song
-    end
+    let(:song) { [] }
+    before { song << first_animal }
     subject { described_class.new(song).sing }
 
     let(:first_animal) { { indefinite_determiner: 'an', name: 'ant' } }
@@ -65,14 +61,14 @@ There was an old lady who swallowed a horse...
     end
 
     context 'given second animal is an aphid' do
+      before { song << second_animal }
       let(:second_animal) do
         { indefinite_determiner: 'an',
           name: 'aphid',
           remark: 'That chomped and ate and wrecked havoc inside her' }
       end
       it 'sings about the old lady swallowing an aphid' do
-        is_expected.to include('There was an old lady who swallowed an aphid;')
-        is_expected.to include('She swallowed the aphid to catch')
+        is_expected.to include('There was an old lady who swallowed an aphid...')
 
         is_expected.not_to include('spider')
       end
@@ -86,8 +82,27 @@ There was an old lady who swallowed a horse...
         is_expected.not_to include('a aphid')
       end
 
-      it 'refers back to the first animal' do
-        is_expected.to include('She swallowed the aphid to catch the ant;')
+      context 'given third animal is an elephant' do
+        before { song << third_animal }
+        let(:third_animal) do
+          { indefinite_determiner: 'an',
+            name: 'elephant',
+            remark: "She's dead dave." }
+        end
+
+        it 'refers back to the first animal' do
+          is_expected.to include('She swallowed the aphid to catch the ant;')
+        end
+
+        it 'refers back to the second animal' do
+          is_expected.to include('She swallowed the aphid to catch')
+        end
+
+        it do
+          is_expected.to include('There was an old lady who swallowed an aphid;')
+          is_expected.to include('There was an old lady who swallowed an elephant...')
+          is_expected.to include("She's dead dave.")
+        end
       end
     end
   end

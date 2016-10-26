@@ -8,81 +8,61 @@ class Song
   def self.original_song
     [
       { name: 'fly', indefinite_determiner: 'a' },
-      { name: 'spider', indefinite_determiner: 'a', remark: 'That wriggled and wiggled and tickled inside her' },
-      { name: 'bird', indefinite_determiner: 'a', remark: 'How absurd to swallow a bird' },
-      { name: 'cat', indefinite_determiner: 'a', remark: 'Fancy that to swallow a cat' },
-      { name: 'dog', indefinite_determiner: 'a', remark: 'What a hog, to swallow a dog' },
-      { name: 'cow', indefinite_determiner: 'a', remark: "I don't know how she swallowed a cow" },
-      { name: 'horse', indefinite_determiner: 'a', remark: "...She's dead, of course" },
+      { name: 'spider', indefinite_determiner: 'a', remark: 'That wriggled and wiggled and tickled inside her.' },
+      { name: 'bird', indefinite_determiner: 'a', remark: 'How absurd to swallow a bird.' },
+      { name: 'cat', indefinite_determiner: 'a', remark: 'Fancy that to swallow a cat!' },
+      { name: 'dog', indefinite_determiner: 'a', remark: 'What a hog, to swallow a dog!' },
+      { name: 'cow', indefinite_determiner: 'a', remark: "I don't know how she swallowed a cow!" },
+      { name: 'horse', indefinite_determiner: 'a', remark: "...She's dead, of course!" },
     ]
   end
 
   def sing
     song = ''
-
-    if @animals.length > 0
-      song = <<-HEREDOC
-#{verse_start(0)}.
-#{verse_end}
-      HEREDOC
-    end
-
-    if @animals.length > 1
-      song << <<-HEREDOC
-#{verse_start(1)};
-#{remark(1)}.
-#{verse_lines(1)}
-#{verse_end}
-      HEREDOC
-    end
-
-    if @animals.length > 2
-      song << <<-HEREDOC
-#{verse_start(2)};
-#{remark(2)}.
-#{verse_lines(2)}
-#{verse_end}
-      HEREDOC
-    end
-
-    if @animals.length > 3
-      song << <<-HEREDOC
-#{verse_start(3)};
-#{remark(3)}!
-#{verse_lines(3)}
-#{verse_end}
-      HEREDOC
-    end
-
-    if @animals.length > 4
-      song << <<-HEREDOC
-#{verse_start(4)};
-#{remark(4)}!
-#{verse_lines(4)}
-#{verse_end}
-      HEREDOC
-    end
-
-    if @animals.length > 5
-      song << <<-HEREDOC
-#{verse_start(5)};
-#{remark(5)}!
-#{verse_lines(5)}
-#{verse_end}
-      HEREDOC
-    end
-
-    if @animals.length > 6
-      song << <<-HEREDOC
-#{verse_start(6)}...
-#{remark(6)}!
-    HEREDOC
-    end
-
+    song << song_start if has_animals?
+    return song if @animals.length < 2
+    song << song_middle if has_middle_of_song?
+    song << song_end
     song
   end
 
   private
+
+  def song_start
+    <<-HEREDOC
+#{verse_start(0)}.
+#{verse_end}
+    HEREDOC
+  end
+
+  def song_middle
+    song_middle = ''
+    last_middle_animal = @animals.length-2
+    (1..last_middle_animal).each do |animal_index|
+      song_middle << <<-HEREDOC
+#{verse_start(animal_index)};
+#{remark(animal_index)}
+#{verse_lines(animal_index)}
+#{verse_end}
+      HEREDOC
+    end
+    song_middle
+  end
+
+  def song_end
+    <<-HEREDOC
+#{verse_start(@animals.length-1)}...
+#{remark(@animals.length-1)}
+    HEREDOC
+  end
+
+  def has_middle_of_song?
+    (@animals.length - 2) > 0
+  end
+
+  def has_animals?
+    @animals.length > 0
+  end
 
   def verse_lines(verse_number)
     verse = ''
