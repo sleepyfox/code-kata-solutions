@@ -28,7 +28,7 @@ class Song
     end
 
     if @animals.length > 1
-      verse = ""
+      verse = ''
       verse << "#{verse_part(1)};"
       song << <<-HEREDOC
 #{verse_start(1)};
@@ -39,9 +39,7 @@ class Song
     end
 
     if @animals.length > 2
-      verse = ""
-      verse << "#{verse_part(2)},\n"
-      verse << "#{verse_part(1)};"
+      verse = verse_lines(2)
      song << <<-HEREDOC
 #{verse_start(2)};
 #{remark(2)}.
@@ -51,10 +49,7 @@ class Song
     end
 
     if @animals.length > 3
-      verse = ""
-      verse << "#{verse_part(3)},\n"
-      verse << "#{verse_part(2)},\n"
-      verse << "#{verse_part(1)};"
+      verse = verse_lines(3)
       song << <<-HEREDOC
 #{verse_start(3)};
 #{remark(3)}!
@@ -64,7 +59,7 @@ class Song
     end
 
     if @animals.length > 4
-      verse = ""
+      verse = ''
       verse << "#{verse_part(4)},\n"
       verse << "#{verse_part(3)},\n"
       verse << "#{verse_part(2)},\n"
@@ -78,7 +73,7 @@ class Song
     end
 
     if @animals.length > 5
-      verse = ""
+      verse = ''
       verse << "#{verse_part(5)},\n"
       verse << "#{verse_part(4)},\n"
       verse << "#{verse_part(3)},\n"
@@ -103,6 +98,15 @@ class Song
   end
 
   private
+
+  def verse_lines(verse_number)
+    verse = ''
+    (1..verse_number).reverse_each do |i|
+      end_character = i == 1 ? ';' : ",\n"
+      verse << "#{verse_part(i)}#{end_character}"
+    end
+    verse
+  end
 
   def verse_start(animal_index)
     "#{VERSE_PREAMBLE}#{indefinite_determiner(animal_index)} #{name(animal_index)}"
