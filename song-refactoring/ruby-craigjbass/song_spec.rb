@@ -1,6 +1,7 @@
-class Song
-  def sing
-    <<-HEREDOC
+require_relative 'song'
+RSpec.describe Song do
+  it 'should be the song' do
+    expected = <<-HEREDOC
 There was an old lady who swallowed a fly.
 I don't know why she swallowed a fly - perhaps she'll die!
 There was an old lady who swallowed a spider;
@@ -36,9 +37,6 @@ I don't know why she swallowed a fly - perhaps she'll die!
 There was an old lady who swallowed a horse...
 ...She's dead, of course!
     HEREDOC
+    expect(described_class.new.sing).to eq(expected)
   end
 end
-
-song = Song.new.sing
-puts song
-
