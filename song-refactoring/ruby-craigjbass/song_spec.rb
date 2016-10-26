@@ -2,7 +2,11 @@ require_relative 'song'
 RSpec.describe Song do
   subject { described_class.new([first_animal, second_animal]).sing }
   let(:first_animal) { { indefinite_determiner: 'a', name: 'fly' } }
-  let(:second_animal) { { indefinite_determiner: 'a', name: 'spider' } }
+  let(:second_animal) do
+    { indefinite_determiner: 'a',
+      name: 'spider',
+      remark: 'That wriggled and wiggled and tickled inside her' }
+  end
 
   context 'given first animal is fly and second animal is spider' do
     it 'the old lady should swallow a fly' do
@@ -60,13 +64,22 @@ There was an old lady who swallowed a horse...
     end
 
     context 'given second animal is an aphid' do
-      let(:second_animal) { { indefinite_determiner: 'an', name: 'aphid' } }
+      let(:second_animal) do
+        { indefinite_determiner: 'an',
+          name: 'aphid',
+          remark: 'That chomped and ate and wrecked havoc inside her' }
+      end
       it 'sings about the old lady swallowing an aphid' do
         is_expected.to include('There was an old lady who swallowed an aphid;')
         is_expected.to include('She swallowed the aphid to catch')
         is_expected.to include('to catch the aphid')
 
         is_expected.not_to include('spider')
+      end
+
+      it 'uses the correct remark' do
+        is_expected.to include(second_animal[:remark])
+        is_expected.not_to include('wriggled and wiggled and tickled')
       end
 
       it 'uses the correct indefinite determiner' do
