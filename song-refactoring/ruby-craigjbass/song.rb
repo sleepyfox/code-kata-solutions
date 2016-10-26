@@ -31,7 +31,7 @@ class Song
       song << <<-HEREDOC
 #{verse_start(1)};
 #{remark(1)}.
-She swallowed the #{name(1)} to catch the #{name(0)};
+#{verse_part(1)};
 #{verse_end}
       HEREDOC
     end
@@ -40,8 +40,8 @@ She swallowed the #{name(1)} to catch the #{name(0)};
      song << <<-HEREDOC
 #{verse_start(2)};
 #{remark(2)}.
-She swallowed the #{name(2)} to catch the #{name(1)},
-She swallowed the #{name(1)} to catch the #{name(0)};
+#{verse_part(2)},
+#{verse_part(1)};
 #{verse_end}
       HEREDOC
     end
@@ -50,9 +50,9 @@ She swallowed the #{name(1)} to catch the #{name(0)};
       song << <<-HEREDOC
 #{verse_start(3)};
 #{remark(3)}!
-She swallowed the #{name(3)} to catch the #{name(2)},
-She swallowed the #{name(2)} to catch the #{name(1)},
-She swallowed the #{name(1)} to catch the #{name(0)};
+#{verse_part(3)},
+#{verse_part(2)},
+#{verse_part(1)};
 #{verse_end}
       HEREDOC
     end
@@ -61,10 +61,10 @@ She swallowed the #{name(1)} to catch the #{name(0)};
       song << <<-HEREDOC
 #{verse_start(4)};
 #{remark(4)}!
-She swallowed the #{name(4)} to catch the #{name(3)},
-She swallowed the #{name(3)} to catch the #{name(2)},
-She swallowed the #{name(2)} to catch the #{name(1)},
-She swallowed the #{name(1)} to catch the #{name(0)};
+#{verse_part(4)},
+#{verse_part(3)},
+#{verse_part(2)},
+#{verse_part(1)};
 #{verse_end}
       HEREDOC
     end
@@ -73,11 +73,11 @@ She swallowed the #{name(1)} to catch the #{name(0)};
       song << <<-HEREDOC
 #{verse_start(5)};
 #{remark(5)}!
-She swallowed the #{name(5)} to catch the #{name(4)},
-She swallowed the #{name(4)} to catch the #{name(3)},
-She swallowed the #{name(3)} to catch the #{name(2)},
-She swallowed the #{name(2)} to catch the #{name(1)},
-She swallowed the #{name(1)} to catch the #{name(0)};
+#{verse_part(5)},
+#{verse_part(4)},
+#{verse_part(3)},
+#{verse_part(2)},
+#{verse_part(1)};
 #{verse_end}
       HEREDOC
     end
@@ -96,6 +96,10 @@ She swallowed the #{name(1)} to catch the #{name(0)};
 
   def verse_start(animal_index)
     "#{VERSE_PREAMBLE}#{indefinite_determiner(animal_index)} #{name(animal_index)}"
+  end
+
+  def verse_part(swallowed_animal_index)
+    "She swallowed the #{name(swallowed_animal_index)} to catch the #{name(swallowed_animal_index-1)}"
   end
 
   def verse_end
