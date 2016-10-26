@@ -69,6 +69,8 @@ There was an old lady who swallowed a horse...
 
         is_expected.to include('to catch the aphid')
         is_expected.not_to include('to catch the spider')
+
+        is_expected.not_to include('a aphid')
       end
     end
   end
