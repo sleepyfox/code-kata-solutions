@@ -18,13 +18,23 @@ class Song
   end
 
   def sing
-    <<-HEREDOC
+    song = <<-HEREDOC
 #{verse_start(0)}.
 #{verse_end}
+    HEREDOC
+
+    return song if @animals.length == 1
+
+    song << <<-HEREDOC
 #{verse_start(1)};
 #{remark(1)}.
 She swallowed the #{name(1)} to catch the #{name(0)};
 #{verse_end}
+    HEREDOC
+
+    return song if @animals.length == 2
+
+    song << <<-HEREDOC
 #{verse_start(2)};
 #{remark(2)}.
 She swallowed the bird to catch the #{name(1)},
@@ -54,6 +64,7 @@ She swallowed the #{name(1)} to catch the #{name(0)};
 #{verse_start(6)}...
 #{remark(6)}!
     HEREDOC
+    song
   end
 
   private

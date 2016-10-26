@@ -45,9 +45,9 @@ There was an old lady who swallowed a horse...
   end
   context 'given first animal is an ant' do
     let(:song) do
-      song = Song.original_song
-      song[0] = first_animal if defined? first_animal
-      song[1] = second_animal if defined? second_animal
+      song = []
+      song << first_animal if defined? first_animal
+      song << second_animal if defined? second_animal
       song
     end
     subject { described_class.new(song).sing }
@@ -56,7 +56,6 @@ There was an old lady who swallowed a horse...
     it 'sings about the old lady swallowing an ant' do
       is_expected.to include('There was an old lady who swallowed an ant.')
       is_expected.to include("I don't know why she swallowed an ant - perhaps she'll die!")
-      is_expected.to include('She swallowed the spider to catch the ant;')
 
       is_expected.to_not include('fly')
     end
@@ -74,7 +73,6 @@ There was an old lady who swallowed a horse...
       it 'sings about the old lady swallowing an aphid' do
         is_expected.to include('There was an old lady who swallowed an aphid;')
         is_expected.to include('She swallowed the aphid to catch')
-        is_expected.to include('to catch the aphid')
 
         is_expected.not_to include('spider')
       end
@@ -86,6 +84,10 @@ There was an old lady who swallowed a horse...
 
       it 'uses the correct indefinite determiner' do
         is_expected.not_to include('a aphid')
+      end
+
+      it 'refers back to the first animal' do
+        is_expected.to include('She swallowed the aphid to catch the ant;')
       end
     end
   end
