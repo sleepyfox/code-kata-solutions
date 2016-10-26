@@ -11,6 +11,9 @@ class Song
       { name: 'spider', indefinite_determiner: 'a', remark: 'That wriggled and wiggled and tickled inside her' },
       { name: 'bird', indefinite_determiner: 'a', remark: 'How absurd to swallow a bird' },
       { name: 'cat', indefinite_determiner: 'a', remark: 'Fancy that to swallow a cat' },
+      { name: 'dog', indefinite_determiner: 'a', remark: 'What a hog, to swallow a dog' },
+      { name: 'cow', indefinite_determiner: 'a', remark: "I don't know how she swallowed a cow" },
+      { name: 'horse', indefinite_determiner: 'a', remark: "...She's dead, of course" },
     ]
   end
 
@@ -33,23 +36,23 @@ She swallowed the cat to catch the bird,
 She swallowed the bird to catch the #{name(1)},
 She swallowed the #{name(1)} to catch the #{name(0)};
 I don't know why she swallowed #{indefinite_determiner(0)} #{name(0)} - perhaps she'll die!
-#{VERSE_PREAMBLE}a dog;
-What a hog, to swallow a dog!
+#{verse_preamble(4)};
+#{remark(4)}!
 She swallowed the dog to catch the cat,
 She swallowed the cat to catch the bird,
 She swallowed the bird to catch the #{name(1)},
 She swallowed the #{name(1)} to catch the #{name(0)};
 I don't know why she swallowed #{indefinite_determiner(0)} #{name(0)} - perhaps she'll die!
-#{VERSE_PREAMBLE}a cow;
-I don't know how she swallowed a cow!
+#{verse_preamble(5)};
+#{remark(5)}!
 She swallowed the cow to catch the dog,
 She swallowed the dog to catch the cat,
 She swallowed the cat to catch the bird,
 She swallowed the bird to catch the #{name(1)},
 She swallowed the #{name(1)} to catch the #{name(0)};
 I don't know why she swallowed #{indefinite_determiner(0)} #{name(0)} - perhaps she'll die!
-#{VERSE_PREAMBLE}a horse...
-...She's dead, of course!
+#{verse_preamble(6)}...
+#{remark(6)}!
     HEREDOC
   end
 
