@@ -18,34 +18,47 @@ class Song
   end
 
   def sing
-    song = <<-HEREDOC
+    song = ''
+
+    if @animals.length > 0
+      song = <<-HEREDOC
 #{verse_start(0)}.
 #{verse_end}
-    HEREDOC
+      HEREDOC
+    end
 
-    return song if @animals.length == 1
-
-    song << <<-HEREDOC
+    if @animals.length > 1
+      song << <<-HEREDOC
 #{verse_start(1)};
 #{remark(1)}.
 She swallowed the #{name(1)} to catch the #{name(0)};
 #{verse_end}
-    HEREDOC
+      HEREDOC
+    end
 
-    return song if @animals.length == 2
-
-    song << <<-HEREDOC
+    if @animals.length > 2
+     song << <<-HEREDOC
 #{verse_start(2)};
 #{remark(2)}.
 She swallowed the bird to catch the #{name(1)},
 She swallowed the #{name(1)} to catch the #{name(0)};
 #{verse_end}
+      HEREDOC
+    end
+
+    if @animals.length > 3
+      song << <<-HEREDOC
 #{verse_start(3)};
 #{remark(3)}!
 She swallowed the cat to catch the bird,
 She swallowed the bird to catch the #{name(1)},
 She swallowed the #{name(1)} to catch the #{name(0)};
 #{verse_end}
+      HEREDOC
+    end
+
+    if @animals.length > 4
+      song << <<-HEREDOC
 #{verse_start(4)};
 #{remark(4)}!
 She swallowed the dog to catch the cat,
@@ -53,6 +66,11 @@ She swallowed the cat to catch the bird,
 She swallowed the bird to catch the #{name(1)},
 She swallowed the #{name(1)} to catch the #{name(0)};
 #{verse_end}
+      HEREDOC
+    end
+
+    if @animals.length > 5
+      song << <<-HEREDOC
 #{verse_start(5)};
 #{remark(5)}!
 She swallowed the cow to catch the dog,
@@ -61,9 +79,16 @@ She swallowed the cat to catch the bird,
 She swallowed the bird to catch the #{name(1)},
 She swallowed the #{name(1)} to catch the #{name(0)};
 #{verse_end}
+      HEREDOC
+    end
+
+    if @animals.length > 6
+      song << <<-HEREDOC
 #{verse_start(6)}...
 #{remark(6)}!
     HEREDOC
+    end
+
     song
   end
 
