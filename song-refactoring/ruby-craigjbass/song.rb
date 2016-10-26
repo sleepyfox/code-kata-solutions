@@ -19,47 +19,51 @@ class Song
 
   def sing
     <<-HEREDOC
-#{verse_preamble(0)}.
-I don't know why she swallowed #{indefinite_determiner(0)} #{name(0)} - perhaps she'll die!
-#{verse_preamble(1)};
+#{verse_start(0)}.
+#{verse_end}
+#{verse_start(1)};
 #{remark(1)}.
 She swallowed the #{name(1)} to catch the #{name(0)};
-I don't know why she swallowed #{indefinite_determiner(0)} #{name(0)} - perhaps she'll die!
-#{verse_preamble(2)};
+#{verse_end}
+#{verse_start(2)};
 #{remark(2)}.
 She swallowed the bird to catch the #{name(1)},
 She swallowed the #{name(1)} to catch the #{name(0)};
-I don't know why she swallowed #{indefinite_determiner(0)} #{name(0)} - perhaps she'll die!
-#{verse_preamble(3)};
+#{verse_end}
+#{verse_start(3)};
 #{remark(3)}!
 She swallowed the cat to catch the bird,
 She swallowed the bird to catch the #{name(1)},
 She swallowed the #{name(1)} to catch the #{name(0)};
-I don't know why she swallowed #{indefinite_determiner(0)} #{name(0)} - perhaps she'll die!
-#{verse_preamble(4)};
+#{verse_end}
+#{verse_start(4)};
 #{remark(4)}!
 She swallowed the dog to catch the cat,
 She swallowed the cat to catch the bird,
 She swallowed the bird to catch the #{name(1)},
 She swallowed the #{name(1)} to catch the #{name(0)};
-I don't know why she swallowed #{indefinite_determiner(0)} #{name(0)} - perhaps she'll die!
-#{verse_preamble(5)};
+#{verse_end}
+#{verse_start(5)};
 #{remark(5)}!
 She swallowed the cow to catch the dog,
 She swallowed the dog to catch the cat,
 She swallowed the cat to catch the bird,
 She swallowed the bird to catch the #{name(1)},
 She swallowed the #{name(1)} to catch the #{name(0)};
-I don't know why she swallowed #{indefinite_determiner(0)} #{name(0)} - perhaps she'll die!
-#{verse_preamble(6)}...
+#{verse_end}
+#{verse_start(6)}...
 #{remark(6)}!
     HEREDOC
   end
 
   private
 
-  def verse_preamble(animal_index)
+  def verse_start(animal_index)
     "#{VERSE_PREAMBLE}#{indefinite_determiner(animal_index)} #{name(animal_index)}"
+  end
+
+  def verse_end
+    "I don't know why she swallowed #{indefinite_determiner(0)} #{name(0)} - perhaps she'll die!"
   end
 
   def animal(animal_index)
