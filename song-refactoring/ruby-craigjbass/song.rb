@@ -40,7 +40,7 @@ She swallowed the #{name(1)} to catch the #{name(0)};
      song << <<-HEREDOC
 #{verse_start(2)};
 #{remark(2)}.
-She swallowed the bird to catch the #{name(1)},
+She swallowed the #{name(2)} to catch the #{name(1)},
 She swallowed the #{name(1)} to catch the #{name(0)};
 #{verse_end}
       HEREDOC
@@ -50,8 +50,8 @@ She swallowed the #{name(1)} to catch the #{name(0)};
       song << <<-HEREDOC
 #{verse_start(3)};
 #{remark(3)}!
-She swallowed the cat to catch the bird,
-She swallowed the bird to catch the #{name(1)},
+She swallowed the #{name(3)} to catch the #{name(2)},
+She swallowed the #{name(2)} to catch the #{name(1)},
 She swallowed the #{name(1)} to catch the #{name(0)};
 #{verse_end}
       HEREDOC
@@ -61,9 +61,9 @@ She swallowed the #{name(1)} to catch the #{name(0)};
       song << <<-HEREDOC
 #{verse_start(4)};
 #{remark(4)}!
-She swallowed the dog to catch the cat,
-She swallowed the cat to catch the bird,
-She swallowed the bird to catch the #{name(1)},
+She swallowed the #{name(4)} to catch the #{name(3)},
+She swallowed the #{name(3)} to catch the #{name(2)},
+She swallowed the #{name(2)} to catch the #{name(1)},
 She swallowed the #{name(1)} to catch the #{name(0)};
 #{verse_end}
       HEREDOC
@@ -73,10 +73,10 @@ She swallowed the #{name(1)} to catch the #{name(0)};
       song << <<-HEREDOC
 #{verse_start(5)};
 #{remark(5)}!
-She swallowed the cow to catch the dog,
-She swallowed the dog to catch the cat,
-She swallowed the cat to catch the bird,
-She swallowed the bird to catch the #{name(1)},
+She swallowed the #{name(5)} to catch the #{name(4)},
+She swallowed the #{name(4)} to catch the #{name(3)},
+She swallowed the #{name(3)} to catch the #{name(2)},
+She swallowed the #{name(2)} to catch the #{name(1)},
 She swallowed the #{name(1)} to catch the #{name(0)};
 #{verse_end}
       HEREDOC
