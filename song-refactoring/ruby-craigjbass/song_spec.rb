@@ -1,9 +1,10 @@
 require_relative 'song'
 RSpec.describe Song do
-  subject { described_class.new(animal).sing }
+  subject { described_class.new([first_animal, second_animal]).sing }
+  let(:first_animal) { { indefinite_determiner: 'a', name: 'fly' } }
+  let(:second_animal) { { indefinite_determiner: 'a', name: 'spider' } }
 
-  context 'given first animal is fly' do
-    let(:animal) { { indefinite_determiner: 'a', name: 'fly' } }
+  context 'given first animal is fly and second animal is spider' do
     it 'the old lady should swallow a fly' do
       expected = <<-HEREDOC
 There was an old lady who swallowed a fly.
@@ -44,10 +45,9 @@ There was an old lady who swallowed a horse...
       is_expected.to eq(expected)
     end
   end
-
-  context 'given first animal is ant' do
-    let(:animal) { { indefinite_determiner: 'an', name: 'ant' } }
-    it 'the old lady should swallow a ant' do
+  context 'given first animal is an ant' do
+    let(:first_animal) { { indefinite_determiner: 'an', name: 'ant' } }
+    it 'sings about the old lady swallowing an ant' do
       is_expected.to include('There was an old lady who swallowed an ant.')
       is_expected.to_not include('There was an old lady who swallowed a fly.')
 
@@ -56,6 +56,20 @@ There was an old lady who swallowed a horse...
 
       is_expected.to include("I don't know why she swallowed an ant - perhaps she'll die!")
       is_expected.to_not include("I don't know why she swallowed a fly - perhaps she'll die!")
+    end
+    context 'given second animal is an aphid' do
+      let(:second_animal) { { indefinite_determiner: 'an', name: 'aphid' } }
+      it 'sings about the old lady swallowing an ant' do
+        is_expected.to include('There was an old lady who swallowed an aphid;')
+        is_expected.not_to include('There was an old lady who swallowed a spider;')
+
+
+        is_expected.to include('She swallowed the aphid to catch')
+        is_expected.not_to include('She swallowed the spider to catch')
+
+        is_expected.to include('to catch the aphid')
+        is_expected.not_to include('to catch the spider')
+      end
     end
   end
 end
